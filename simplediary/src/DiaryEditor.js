@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
     // useRef : DOM 조작
     const authorInput = useRef();
     const contentInput = useRef();
@@ -33,7 +33,15 @@ const DiaryEditor = () => {
             return;
         }
 
+        // 일기 저장 성공하면
+        onCreate(state.author, state.content, state.emotion); // 데이터 역방향으로 ~ app.js
+        console.log(state);
         alert('저장 성공!');
+        setState({
+            author: "",
+            content: "",
+            emotion: 1,
+        }) // value 초기화
     }
 
     return (
