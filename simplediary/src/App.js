@@ -21,17 +21,23 @@ function App() {
   };
 
   // 삭제
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     console.log(`${targetId}번째 일기가 삭제되었습니다.`);
     const newDiaryList = data.filter((it) => it.id !== targetId);
     setData(newDiaryList);
+  }
+
+  // 수정
+  const onEdit = (targetId, newContent) => {
+    setData(data.map((it) => it.id === targetId ?
+      { ...it, content: newContent } : it))
   }
 
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
       {/* props 내려서 list rendering */}
-      <DiaryList onDelete={onDelete} diaryList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
 }
