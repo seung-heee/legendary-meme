@@ -1,6 +1,6 @@
 import './App.css';
 
-const Diaryitem = ({ author, content, created_date, emotion, id }) => {
+const Diaryitem = ({ onDelete, author, content, created_date, emotion, id }) => {
     return (
         <div className="Diaryitem">
             <div className="info">
@@ -10,7 +10,12 @@ const Diaryitem = ({ author, content, created_date, emotion, id }) => {
             <div className="content">
                 {content}
             </div>
-        </div>
+            <button onClick={() => {
+                if (window.confirm(`${id}번째 일기를 삭제하시겠습니까?`)) {
+                    onDelete(id);
+                };
+            }}>삭제하기</button>
+        </div >
     );
 }
 

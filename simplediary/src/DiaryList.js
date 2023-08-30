@@ -1,7 +1,7 @@
 import Diaryitem from "./Diaryitem";
 import './App.css';
 
-const DiaryList = ({ diaryList }) => {
+const DiaryList = ({ diaryList, onDelete }) => {
     console.log(diaryList);
     return (
         <div className="DiaryList">
@@ -11,7 +11,7 @@ const DiaryList = ({ diaryList }) => {
             <div>
                 {diaryList.map((item, idx) => // idx로 unique key 설정O, but 수정시 헷갈림 주의
                     // Each child in a list should have a unique "key" prop, 각 객체 고유한 키 설정하기
-                    <Diaryitem key={item.id} {...item} />
+                    <Diaryitem onDelete={onDelete} key={item.id} {...item} />
                 )}
             </div>
         </div >
