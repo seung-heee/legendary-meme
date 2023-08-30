@@ -2,6 +2,7 @@ import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import { useState, useRef } from 'react';
+import LifeCycle from './LifeCycle';
 
 function App() {
   const [data, setData] = useState([]); // 일기 리스트 담길 빈 배열
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <div className="App">
+      <LifeCycle />
       <DiaryEditor onCreate={onCreate} />
       {/* props 내려서 list rendering */}
       <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
