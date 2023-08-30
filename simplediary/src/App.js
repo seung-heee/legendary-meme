@@ -2,6 +2,7 @@ import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import { useState, useRef, useEffect, useMemo } from 'react';
+import Optimizetest from './Optimizetest';
 
 function App() {
   const [data, setData] = useState([]); // 일기 리스트 담길 빈 배열
@@ -41,7 +42,6 @@ function App() {
 
   // 삭제
   const onRemove = (targetId) => {
-    console.log(`${targetId}번째 일기가 삭제되었습니다.`);
     const newDiaryList = data.filter((it) => it.id !== targetId);
     setData(newDiaryList);
   }
@@ -54,7 +54,6 @@ function App() {
 
   // 함수가 아니라 값을 return함, getDiaryAnaiysis는 함수 X
   const getDiaryAnaiysis = useMemo(() => {
-    console.log("일기 분석 시작");
     const goodCount = data.filter((it) => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100;
@@ -66,6 +65,7 @@ function App() {
 
   return (
     <div className="App">
+      <Optimizetest />
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 : {data.length}</div>
       <div>기분 좋은 일기 개수 : {goodCount}</div>
