@@ -33,7 +33,7 @@ const DiaryEditor = ({ onCreate }) => {
             return;
         }
 
-        // 일기 저장 성공하면
+        // 일기 저장 성공
         onCreate(state.author, state.content, state.emotion); // 데이터 역방향으로 ~ app.js
         alert('저장 성공!');
         setState({
