@@ -1,8 +1,7 @@
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
-import { useState, useRef, useEffect, useMemo } from 'react';
-import Optimizetest from './Optimizetest';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
   const [data, setData] = useState([]); // 일기 리스트 담길 빈 배열
@@ -30,15 +29,15 @@ function App() {
   }, [])
 
   // 일기 추가
-  const onCreate = (author, content, emotion) => {
+  const onCreate = useCallback((author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
       author, content, emotion, created_date,
       id: dataId.current
     }
     dataId.current += 1;
-    setData([newItem, ...data]); // 일기 리스트 담긴 배열 state 변경
-  };
+    setData((data) => [newItem, ...data]); // 함수형 업데이트
+  }, []);
 
   // 삭제
   const onRemove = (targetId) => {
@@ -65,7 +64,6 @@ function App() {
 
   return (
     <div className="App">
-      <Optimizetest />
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 : {data.length}</div>
       <div>기분 좋은 일기 개수 : {goodCount}</div>
