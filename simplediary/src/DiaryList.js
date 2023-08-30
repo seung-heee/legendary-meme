@@ -1,7 +1,11 @@
 import Diaryitem from "./Diaryitem";
 import './App.css';
+import { useContext } from "react";
+import { DiaryStateContext } from "./App";
 
-const DiaryList = ({ onEdit, diaryList, onRemove }) => {
+const DiaryList = () => {
+
+    const diaryList = useContext(DiaryStateContext)
     return (
         <div className="DiaryList">
             <h2>일기 리스트</h2>
@@ -10,7 +14,7 @@ const DiaryList = ({ onEdit, diaryList, onRemove }) => {
             <div>
                 {diaryList.map((item, idx) => // idx로 unique key 설정O, but 수정시 헷갈림 주의
                     // Each child in a list should have a unique "key" prop, 각 객체 고유한 키 설정하기
-                    <Diaryitem onEdit={onEdit} onRemove={onRemove} key={item.id} {...item} />
+                    <Diaryitem key={item.id} {...item} />
                 )}
             </div>
         </div >

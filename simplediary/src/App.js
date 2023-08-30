@@ -1,7 +1,7 @@
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
-import { useRef, useEffect, useMemo, useCallback, useReducer } from 'react';
+import React, { useRef, useEffect, useMemo, useCallback, useReducer } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,7 +25,10 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-}
+};
+
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function App() {
   // const [data, setData] = useState([]); // 일기 리스트 담길 빈 배열
@@ -35,7 +38,6 @@ function App() {
   // 비동기함수
   const getData = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/comments').then((res) => res.json());
-
     const initData = res.slice(0, 20).map((it) => {
       return {
         author: it.email,
@@ -78,6 +80,12 @@ function App() {
     //   { ...it, content: newContent } : it))
   }, []);
 
+
+  // 재생성되지 않게 객체 묶기
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onRemove, onEdit }
+  }, [])
+
   // 함수가 아니라 값을 return함, getDiaryAnaiysis는 함수 X
   const getDiaryAnaiysis = useMemo(() => {
     const goodCount = data.filter((it) => it.emotion >= 3).length;
@@ -90,14 +98,18 @@ function App() {
   const { goodCount, badCount, goodRatio } = getDiaryAnaiysis; // 함수로 호출하면 에러
 
   return (
-    <div className="App">
-      <DiaryEditor onCreate={onCreate} />
-      <div>전체 일기 : {data.length}</div>
-      <div>기분 좋은 일기 개수 : {goodCount}</div>
-      <div>기분 나쁜 일기 개수 : {badCount}</div>
-      <div>기분 좋은 일기 비율: {goodRatio}</div>
-      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
-    </div>
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider value={memoizedDispatches}>
+        <div className="App">
+          <DiaryEditor />
+          <div>전체 일기 : {data.length}</div>
+          <div>기분 좋은 일기 개수 : {goodCount}</div>
+          <div>기분 나쁜 일기 개수 : {badCount}</div>
+          <div>기분 좋은 일기 비율: {goodRatio}</div>
+          <DiaryList />
+        </div>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
   );
 }
 

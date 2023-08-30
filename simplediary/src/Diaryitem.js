@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './App.css';
+import { DiaryDispatchContext } from './App';
 
-const Diaryitem = ({ onEdit, onRemove, author, content, created_date, emotion, id }) => {
-    useEffect(() => {
-        console.log(`${id}번째 렌더링`)
-    })
+const Diaryitem = ({ author, content, created_date, emotion, id }) => {
+    const { onEdit, onRemove } = useContext(DiaryDispatchContext);
 
     const [isEdit, setisEdit] = useState(false); // 수정 state
     const toggleIsEdit = () => setisEdit(!isEdit); // 반전연산, 토글
