@@ -40,16 +40,15 @@ function App() {
   }, []);
 
   // 삭제
-  const onRemove = (targetId) => {
-    const newDiaryList = data.filter((it) => it.id !== targetId);
-    setData(newDiaryList);
-  }
+  const onRemove = useCallback((targetId) => {
+    setData(data => data.filter((it) => it.id !== targetId));
+  }, []);
 
   // 수정
-  const onEdit = (targetId, newContent) => {
-    setData(data.map((it) => it.id === targetId ?
+  const onEdit = useCallback((targetId, newContent) => {
+    setData((data) => data.map((it) => it.id === targetId ?
       { ...it, content: newContent } : it))
-  }
+  }, []);
 
   // 함수가 아니라 값을 return함, getDiaryAnaiysis는 함수 X
   const getDiaryAnaiysis = useMemo(() => {
