@@ -3,6 +3,7 @@ import { DiaryStateContext } from '../App';
 import MyButton from './../component/MyButton';
 import MyHeader from './../component/MyHeader';
 import DiaryList from "../component/DiaryList";
+import DiaryItem from "../component/DiaryItem";
 
 const Home = () => {
     const diaryList = useContext(DiaryStateContext);
