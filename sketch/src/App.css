@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'SF_HailSnow';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'SF_HailSnow';
+    min-height: 100vh;
+    margin: 0;
+}
+
+@media (min-width: 375px) {
+    .App {
+        width: 375px;
+    }
+}
+
+@media (max-width:500px) {
+    .App {
+        width: 100vw;
+    }
+}
+
+#root {
+    box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+}
+
+.App {
+    min-height: 100vh;
+}
+
+
+/* Home */
+
+.Main {
+    background-color: #FBF4E8;
+    background-image: url('../public/assets/all.png');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.Nav img {
+    width: 80px;
+}
+
+.green {
+    color: #155739;
+}
