@@ -8,6 +8,24 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'OAGothic-ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+.snowFont {
+    font-family: 'SF_HailSnow';
+}
+
+.OA {
+    font-family: 'OAGothic-ExtraBold';
+    color: white;
+    -webkit-text-stroke: 1px #155739;
+    text-shadow: 3px 4px 4px rgba(0, 0, 0, 0.56);
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -40,6 +58,14 @@ body {
 
 /* Home */
 
+.Nav img {
+    width: 80px;
+}
+
+.titlegreen {
+    color: #155739;
+}
+
 .Main {
     background-color: #FBF4E8;
     background-image: url('../public/assets/all.png');
@@ -49,10 +75,77 @@ body {
     position: relative;
 }
 
-.Nav img {
-    width: 80px;
+.Main2 {
+    background: rgb(148, 198, 138);
+    background: linear-gradient(180deg, rgba(148, 198, 138, 1) 32%, rgba(251, 244, 232, 1) 89%);
+}
+
+.Vill {
+    margin-bottom: -40px;
+}
+
+.vill_character {
+    width: 125px;
+    top: 20px;
+}
+
+.vill_title {
+    top: 30px;
+    padding: 1px 15px;
+    border-radius: 20px;
+}
+
+.yellow {
+    background-color: #F9EDAA;
+    border: 5px solid #F7E375;
+    left: 100px !important;
+}
+
+.pink {
+    background-color: #F9E0E2;
+    border: 5px solid #F3C4C9;
+}
+
+.blue {
+    background-color: #C4ECF5;
+    border: 5px solid #9AD5E3;
+}
+
+.purple {
+    background-color: #D4BDE7;
+    border: 5px solid #BB9DD3;
+}
+
+.red {
+    background-color: #F4B7B7;
+    border: 5px solid #EB9898;
 }
 
 .green {
-    color: #155739;
+    background-color: #D3F2B3;
+    border: 5px solid #B9E08F;
+}
+
+.right_img {
+    right: 0;
+}
+
+.right_title {
+    right: 70px;
+}
+
+.right_ex {
+    right: 120px;
+}
+
+.left_img {
+    left: 0;
+}
+
+.left_title {
+    left: 70px;
+}
+
+.left_ex {
+    left: 115px;
 }
